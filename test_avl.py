@@ -1,5 +1,4 @@
 import unittest
-import unittest
 import random
 
 from avl import SearchTree
@@ -38,10 +37,9 @@ class TestAVL(unittest.TestCase):
 
     def test_random_values(self):
         v = []
-        for _ in xrange(0, 1000):
+        for _ in xrange(0, 10000):
             v.append(random.randint(0, 10000000))
 
-        print '....'
         tree = SearchTree()
         for value in v:
             tree.insert(value)

@@ -102,27 +102,13 @@ class SearchTree(object):
             )
 
     def compute_height(self, l_subtree, r_subtree):
-        left_height, right_height = (0, 0)
-        if l_subtree is not None:
-            index = l_subtree
-            left_height = self.nodes[index].height + 1
-
-        if r_subtree is not None:
-            index = r_subtree
-            right_height = self.nodes[index].height + 1
-
+        left_height = 0 if l_subtree is None else self.nodes[l_subtree].height + 1
+        right_height = 0 if r_subtree is None else self.nodes[r_subtree].height + 1
         return max(left_height, right_height)
 
     def balance_factor(self, node):
-        left_height, right_height = (-1, -1)
-        if node.left_child is not None:
-            left_child = node.left_child
-            left_height = self.nodes[left_child].height
-
-        if node.right_child is not None:
-            right_child = node.right_child
-            right_height = self.nodes[right_child].height
-
+        left_height = -1 if node.left_child is None else self.nodes[node.left_child].height
+        right_height = -1 if node.right_child is None else self.nodes[node.right_child].height
         return left_height - right_height
 
     def left_rotation(self, index):
