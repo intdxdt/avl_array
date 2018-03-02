@@ -3,11 +3,11 @@ class Node(object):
         """
         A node inside a `SearchTree`.
         """
-        self.value = value,
-        self.parent = parent,
-        self.left_child = left_child,
-        self.right_child = right_child,
-        self.height = height,
+        self.value = value
+        self.parent = parent
+        self.left_child = left_child
+        self.right_child = right_child
+        self.height = height
 
 
 class SearchTree(object):
@@ -85,7 +85,7 @@ class SearchTree(object):
         )
 
     def update_heights(self, start_index):
-        if not self.nodes.is_empty():
+        if not (len(self.nodes) == 0):
             child_index = start_index
             while self.nodes[child_index].parent is not None:
                 ancestor_index = self.nodes[child_index].parent
@@ -250,6 +250,9 @@ class SearchTree(object):
     def is_balanced(self, index):
         return abs(self.balance_factor(self.nodes[index])) < 2
 
+    def iter(self):
+        return SearchTreeIter(self.nodes, self.root)
+
 
 class SearchTreeIter(object):
     def __init__(self, nodes, root):
@@ -294,8 +297,3 @@ class SearchTreeIter(object):
             self.current_node = node.parent
 
         return result
-
-
-if __name__ == '__main__':
-    o = [i for i in SearchTreeIter(10)]
-    print o
